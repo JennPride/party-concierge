@@ -1,4 +1,4 @@
-import {ConsentTypes} from "../enums/ConsentTypes";
+import ConsentTypes from "../enums/ConsentTypes";
 
 export const ALL_CONSENT_TYPES: ConsentTypes[] = [
     ConsentTypes.ALCOHOL,

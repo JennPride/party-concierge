@@ -1,13 +1,13 @@
 import { Document, Model } from "mongoose";
+import ConsentTypes from "../../enums/ConsentTypes";
+import  { IUser }  from '../users/user.interface';
 
-export interface IPrompt {
+export interface IPrompt extends Document{
     title: string,
     description: string,
     requiredConsentTypes: ConsentTypes[],
     isRemoteFriendly: boolean,
     isInPersonFriendly: boolean,
-    level: number
+    level: number,
+    createdBy: IUser['_id'],
 }
-
-export interface IPromptDocument extends IPrompt, Document {}
-export interface IPromptModel extends Model<IPromptDocument> {}

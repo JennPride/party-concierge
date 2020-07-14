@@ -2,22 +2,25 @@
   "name": "party-rules-api",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/app.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
     "dev": "nodemon",
-    "start": "node .",
-    "test": "jest"
+    "start": "tsc && node dist/app.js",
+    "test": "jest",
+    "postinstall": "node-config-ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/config": "0.0.36",
     "@types/jest": "^26.0.4",
     "@types/mongoose": "^5.7.31",
     "@types/node": "^14.0.20",
     "body-parser": "^1.19.0",
+    "config": "^3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validation": "^3.0.5",

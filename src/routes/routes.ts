@@ -1,8 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { validate, ValidationError, Joi } = require('express-validation');
+import express from 'express';
+import bodyParser from 'body-parser';
+import { validate, ValidationError, Joi } from 'express-validation';
 
 const { fetchPrompt, createPrompt } = require('../controllers/promptController');
+const { createUser } = require('../controllers/userController');
 
 const cors = require('cors');
 const app = express();
@@ -28,6 +29,13 @@ const promptCreationRequestValidation = {
     })
 };
 
+const userCreateRequestValidation = {
+  body: Joi.object({
+      email: Joi.string().email().required(),
+      userName: Joi.string().required()
+  })
+};
+
 app.post('/request_prompt', validate(promptRequestValidation, {}, {}), (req: any, res: any) => {
     fetchPrompt(req, res);
 });
@@ -35,3 +43,5 @@ app.post('/request_prompt', validate(promptRequestValidation, {}, {}), (req: any
 app.post('/create_prompt', validate(promptCreationRequestValidation, {}, {}), (req: any, res: any) => {
    createPrompt(req, res);
 });
+
+app.post('/create_user', validate(userCreateRequestValidation, {}, {}),  createUser);

@@ -1,6 +1,5 @@
-import * as Mongoose from "mongoose";
-
-const config = require('config');
+import * as Mongoose from 'mongoose';
+import config from 'config';
 
 let database: Mongoose.Connection;
 export const connect = () => {
@@ -24,6 +23,7 @@ export const connect = () => {
         console.log("Error connecting to database");
     });
 };
+
 export const disconnect = () => {
     if (!database) {
         return;
