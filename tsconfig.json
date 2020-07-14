@@ -6,8 +6,11 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
+    "lib": ["es2015"],
     "outDir": "dist",
     "baseUrl": ".",
+    "strict": true,
+    "declaration": true,
     "paths": {
       "*": [
         "node_modules/*"
@@ -16,5 +19,6 @@
   },
   "include": [
     "src/**/*"
-  ]
+  ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

@@ -9,17 +9,19 @@
     "prestart": "npm run build",
     "dev": "nodemon",
     "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^26.0.4",
     "@types/mongoose": "^5.7.31",
     "@types/node": "^14.0.20",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validation": "^3.0.5",
+    "jasmine": "^3.5.0",
     "lodash": "^4.17.19",
     "mongoose": "^5.9.23",
     "node-config": "0.0.2",
@@ -27,6 +29,10 @@
     "requirejs": "^2.3.6"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.10.4",
+    "jest": "^26.1.0",
+    "jest-junit": "^11.0.1",
+    "ts-jest": "^26.1.2",
     "tslint": "^6.1.2",
     "typescript": "^3.9.6"
   }
