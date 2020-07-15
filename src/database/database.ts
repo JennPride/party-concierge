@@ -1,4 +1,4 @@
-import * as Mongoose from 'mongoose';
+import Mongoose = require("mongoose");
 import config from 'config';
 
 let database: Mongoose.Connection;

@@ -8,10 +8,10 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const express_validation_1 = require("express-validation");
 const { fetchPrompt, createPrompt } = require('../controllers/promptController');
 const { createUser } = require('../controllers/userController');
+const router = express_1.default.Router();
 const cors = require('cors');
-const app = express_1.default();
-app.use(body_parser_1.default.json());
-app.use(cors);
+router.use(body_parser_1.default.json());
+router.use(cors);
 const promptRequestValidation = {
     body: express_validation_1.Joi.object({
         level: express_validation_1.Joi.number().required(),
@@ -35,11 +35,12 @@ const userCreateRequestValidation = {
         userName: express_validation_1.Joi.string().required()
     })
 };
-app.post('/request_prompt', express_validation_1.validate(promptRequestValidation, {}, {}), (req, res) => {
+router.post('/request_prompt', express_validation_1.validate(promptRequestValidation, {}, {}), (req, res) => {
     fetchPrompt(req, res);
 });
-app.post('/create_prompt', express_validation_1.validate(promptCreationRequestValidation, {}, {}), (req, res) => {
+router.post('/create_prompt', express_validation_1.validate(promptCreationRequestValidation, {}, {}), (req, res) => {
     createPrompt(req, res);
 });
-app.post('/create_user', express_validation_1.validate(userCreateRequestValidation, {}, {}), createUser);
+router.post('/create_user', express_validation_1.validate(userCreateRequestValidation, {}, {}), createUser);
+module.exports = router;
 //# sourceMappingURL=routes.js.map

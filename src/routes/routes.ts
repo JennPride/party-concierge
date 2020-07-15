@@ -5,10 +5,11 @@ import { validate, ValidationError, Joi } from 'express-validation';
 const { fetchPrompt, createPrompt } = require('../controllers/promptController');
 const { createUser } = require('../controllers/userController');
 
+
+const router = express.Router();
 const cors = require('cors');
-const app = express();
-app.use(bodyParser.json());
-app.use(cors);
+router.use(bodyParser.json());
+router.use(cors);
 
 const promptRequestValidation = {
     body: Joi.object({
@@ -36,12 +37,14 @@ const userCreateRequestValidation = {
   })
 };
 
-app.post('/request_prompt', validate(promptRequestValidation, {}, {}), (req: any, res: any) => {
+router.post('/request_prompt', validate(promptRequestValidation, {}, {}), (req: any, res: any) => {
     fetchPrompt(req, res);
 });
 
-app.post('/create_prompt', validate(promptCreationRequestValidation, {}, {}), (req: any, res: any) => {
+router.post('/create_prompt', validate(promptCreationRequestValidation, {}, {}), (req: any, res: any) => {
    createPrompt(req, res);
 });
 
-app.post('/create_user', validate(userCreateRequestValidation, {}, {}),  createUser);
+router.post('/create_user', validate(userCreateRequestValidation, {}, {}),  createUser);
+
+module.exports = router;
