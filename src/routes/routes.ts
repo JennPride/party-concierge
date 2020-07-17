@@ -45,6 +45,11 @@ router.post('/create_prompt', validate(promptCreationRequestValidation, {}, {}),
    createPrompt(req, res);
 });
 
-router.post('/create_user', validate(userCreateRequestValidation, {}, {}),  createUser);
+// router.post('/create_user', validate(userCreateRequestValidation, {}, {}),  createUser);
+
+router.post('/create_user',(req: any, res: any) => {
+    console.log('HEY');
+});
+
 
 module.exports = router;

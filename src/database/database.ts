@@ -3,9 +3,11 @@ import config from 'config';
 
 let database: Mongoose.Connection;
 export const connect = () => {
-    // add your own uri below
     // TODO: When prod comes along, will probably need srv
-    const uri = `mongodb://${config.get('database.user')}:${config.get('database.password')}@${config.get('database.host')}:${config.get('database.port')}/test?retryWrites=true&w=majority`;
+    const uri = `mongodb://${config.get('database.user')}:${config.get('database.password')}@${config.get('database.host')}:${config.get('database.port')}/${config.get('database.name')}?retryWrites=true&w=majority`;
+
+    console.log(uri);
+
     if (database) {
         return;
     }
