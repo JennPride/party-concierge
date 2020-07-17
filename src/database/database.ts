@@ -6,8 +6,6 @@ export const connect = () => {
     // TODO: When prod comes along, will probably need srv
     const uri = `mongodb://${config.get('database.user')}:${config.get('database.password')}@${config.get('database.host')}:${config.get('database.port')}/${config.get('database.name')}?retryWrites=true&w=majority`;
 
-    console.log(uri);
-
     if (database) {
         return;
     }
