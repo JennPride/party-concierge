@@ -1,7 +1,17 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, {Document, Schema} from "mongoose";
 
-import { IPrompt } from './prompt.interface';
 import ConsentTypes from '../../enums/ConsentTypes';
+import  { IUser }  from '../users/user';
+
+export interface IPrompt extends Document{
+    title: string,
+    description: string,
+    requiredConsentTypes: ConsentTypes[],
+    isRemoteFriendly: boolean,
+    level: number,
+    createdBy: IUser['_id'],
+}
+
 
 const PromptSchema: Schema = new Schema({
     title: { type: String, required: true },
