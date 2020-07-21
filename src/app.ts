@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 const users = require('./routes/users');
+const prompts = require('./routes/prompts');
 const { connect } = require('./database/database');
 
 connect();
@@ -15,6 +16,7 @@ app.set('port', port);
 app.use(bodyParser.json());
 
 app.use('/users', users);
+app.use('/prompts', prompts);
 
 app.listen((port), () => console.log(`Server running on port ${port}`));
 

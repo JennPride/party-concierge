@@ -14,9 +14,10 @@ const promptCreateRequestSchema =
         title: Joi.string().required(),
         description: Joi.string().required(),
         isRemoteFriendly: Joi.boolean().required(),
-        level: Joi.number().valid(...validLevels),
-        creator: Joi.string().required(),
-        requiredConsentTypes: Joi.string().valid(...validConsentTypes).required()
+        level: Joi.number().valid(...validLevels).required(),
+        createdBy: Joi.string(),
+        numberOfParticipants: Joi.number(),
+        requiredConsentTypes: Joi.array().items(Joi.string().valid(...validConsentTypes)).required()
     }).required();
 
 const promptFetchRequestSchema =
