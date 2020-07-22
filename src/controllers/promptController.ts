@@ -42,14 +42,21 @@ export async function fetchPrompt(req: express.Request, res: express.Response) {
         isRemoteFriendly,
         level,
         requiredConsentTypes: consentTypes,
+        requesterId: createdBy,
     } = req.body;
 
-    const searchObject = {
+    let searchObject = {
         _id: { $nin: excludedPromptIds },
         isRemoteFriendly,
-        level,
+        level: { $lte: level},
         requiredConsentTypes: { $all : consentTypes}
     };
+
+    if (createdBy) {
+        searchObject = {...searchObject, ...{ $or: [ {createdBy: { $exists: false }}, { createdBy } ]}};
+    } else {
+        searchObject = { ...searchObject, ...{ createdBy : { $exists: false}}};
+    }
 
     try {
         const prompt = await Prompt.findOne(searchObject);
