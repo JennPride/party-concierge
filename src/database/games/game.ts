@@ -6,6 +6,7 @@ import Levels from "../../enums/Levels";
 export interface IGame extends Document {
     players: Player[],
     createdAt: Date,
+    createdBy: string,
     roundsCompleted: number,
     level: Levels
 }
@@ -13,6 +14,7 @@ export interface IGame extends Document {
 export const GameSchema: Schema = new Schema({
     players: { type: Array, required: true},
     createdAt: { type: Date, required: true},
+    createdBy: {type: String, required: true},
     roundsCompleted: { type: Number, required: true},
     level: { type: Number, enum: Levels, required: true},
 });
