@@ -15,8 +15,7 @@ const port = 3000;
 
 app.set('port', port);
 
-app.use(bodyParser.json());
-app.use(cors);
+app.use(bodyParser.json(), cors());
 
 app.use('/users', users);
 app.use('/prompts', prompts);
