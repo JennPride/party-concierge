@@ -1,24 +1,27 @@
 import mongoose, {Document, Schema} from "mongoose";
-import  { IUser }  from '../users/user';
-import PromptTypes from "../../enums/PromptTypes";
 
-export interface IPrompt extends Document{
+import ConsentTypes from '../../enums/ConsentTypes';
+import  { IUser }  from '../users/user';
+
+export interface IAction extends Document{
     title: string,
     description: string,
+    requiredConsentTypes: ConsentTypes[],
     isRemoteFriendly: boolean,
     level: number,
     createdBy: IUser['_id'],
-    type: PromptTypes,
+    numberOfParticipants: number
 }
 
 
-const PromptSchema: Schema = new Schema({
+const ActionSchema: Schema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
+    requiredConsentTypes: {type: Array, required: true},
     isRemoteFriendly: { type: Boolean, required: true },
     level: { type: Number, required: true },
     createdBy: { type: Schema.Types.ObjectId },
-    type: { type: String, required: true}
+    numberOfParticipants: { type: Number, max: 15, min: 1}
 });
 
-export default mongoose.model<IPrompt>('Prompt', PromptSchema);
+export default mongoose.model<IAction>('Action', ActionSchema);

@@ -9,8 +9,7 @@ export async function createPrompt(req: express.Request, res: express.Response):
         isRemoteFriendly,
         level,
         createdBy,
-        requiredConsentTypes,
-        numberOfParticipants,
+        type
     } = req.body;
 
     const prompt = new Prompt({
@@ -19,8 +18,7 @@ export async function createPrompt(req: express.Request, res: express.Response):
         isRemoteFriendly,
         level,
         createdBy,
-        requiredConsentTypes,
-        numberOfParticipants,
+        type
     });
 
     try {
@@ -41,7 +39,7 @@ export async function fetchPrompt(req: express.Request, res: express.Response) {
         excludedPromptIds,
         isRemoteFriendly,
         level,
-        requiredConsentTypes: consentTypes,
+        type,
         requesterId: createdBy,
     } = req.body;
 
@@ -49,7 +47,7 @@ export async function fetchPrompt(req: express.Request, res: express.Response) {
         _id: { $nin: excludedPromptIds },
         isRemoteFriendly,
         level: { $lte: level},
-        requiredConsentTypes: { $all : consentTypes}
+        type,
     };
 
     if (createdBy) {
