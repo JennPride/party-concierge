@@ -43,6 +43,7 @@ export async function fetchPrompt(req: express.Request, res: express.Response) {
         requesterId: createdBy,
     } = req.body;
 
+    // TODO: Logic around is remote friendly query only if remote
     let searchObject = {
         _id: { $nin: excludedPromptIds },
         isRemoteFriendly,

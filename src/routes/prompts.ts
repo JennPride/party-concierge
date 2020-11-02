@@ -3,11 +3,11 @@ import Joi from 'joi';
 
 import { createPrompt, fetchPrompt } from '../controllers/promptController';
 import { validateSchema }  from './middleware';
-import ConsentTypes from "../enums/ConsentTypes";
 import Levels from "../enums/Levels";
+import PromptTypes from "../enums/PromptTypes";
 
 const validLevels = Object.values(Levels);
-const validConsentTypes = Object.values(ConsentTypes);
+const validTypes = Object.values(PromptTypes);
 
 const promptCreateRequestSchema =
     Joi.object({
@@ -15,16 +15,15 @@ const promptCreateRequestSchema =
         description: Joi.string().required(),
         isRemoteFriendly: Joi.boolean().required(),
         level: Joi.number().valid(...validLevels).required(),
+        type: Joi.string().valid(...validTypes).required(),
         createdBy: Joi.string(),
-        numberOfParticipants: Joi.number(),
-        requiredConsentTypes: Joi.array().items(Joi.string().valid(...validConsentTypes)).required()
     }).required();
 
 const promptFetchRequestSchema =
     Joi.object({
         isRemoteFriendly: Joi.boolean().required(),
         level: Joi.number().valid(...validLevels),
-        requiredConsentTypes: Joi.array().items(Joi.string().valid(...validConsentTypes)).required(),
+        type: Joi.string().valid(...validTypes).required(),
         excludedPromptIds: Joi.array().required(),
         requesterId: Joi.string()
     }).required();
