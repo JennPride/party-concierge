@@ -29,7 +29,7 @@ const promptFetchRequestSchema =
     }).required();
 
 
-let router = express.Router();
+const router = express.Router();
 
 router.post('/create', validateSchema(promptCreateRequestSchema, 'body'), createPrompt);
 router.post('/fetch', validateSchema(promptFetchRequestSchema, 'body'), fetchPrompt);

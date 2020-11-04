@@ -12,7 +12,7 @@ const userCreateRequestSchema =
     }).required();
 
 
-let router = express.Router();
+const router = express.Router();
 
 router.post('/create', validateSchema(userCreateRequestSchema, 'body'), createUser);
 

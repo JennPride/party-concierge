@@ -17,9 +17,8 @@ const Mongoose = require("mongoose");
 const config_1 = __importDefault(require("config"));
 let database;
 exports.connect = () => {
-    // add your own uri below
     // TODO: When prod comes along, will probably need srv
-    const uri = `mongodb://${config_1.default.get('database.user')}:${config_1.default.get('database.password')}@${config_1.default.get('database.host')}:${config_1.default.get('database.port')}/test?retryWrites=true&w=majority`;
+    const uri = `mongodb://${config_1.default.get('database.user')}:${config_1.default.get('database.password')}@${config_1.default.get('database.host')}:${config_1.default.get('database.port')}/${config_1.default.get('database.name')}?retryWrites=true&w=majority`;
     if (database) {
         return;
     }

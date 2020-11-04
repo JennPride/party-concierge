@@ -31,7 +31,7 @@ const actionFetchRequestSchema =
     }).required();
 
 
-let router = express.Router();
+const router = express.Router();
 
 router.post('/create', validateSchema(actionCreateRequestSchema, 'body'), createAction);
 router.post('/fetch', validateSchema(actionFetchRequestSchema, 'body'), fetchAction);
