@@ -13,7 +13,7 @@ const actionCreateRequestSchema =
     Joi.object({
         title: Joi.string().required(),
         description: Joi.string().required(),
-        isRemoteFriendly: Joi.boolean().required(),
+        isRemote: Joi.boolean().required(),
         level: Joi.number().valid(...validLevels).required(),
         createdBy: Joi.string(),
         numberOfParticipants: Joi.number(),

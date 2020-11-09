@@ -21,7 +21,7 @@ const promptCreateRequestSchema =
 
 const promptFetchRequestSchema =
     Joi.object({
-        isRemoteFriendly: Joi.boolean().required(),
+        isRemote: Joi.boolean().required(),
         level: Joi.number().valid(...validLevels),
         type: Joi.string().valid(...validTypes).required(),
         excludedPromptIds: Joi.array().required(),
